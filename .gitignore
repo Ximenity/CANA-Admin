@@ -1,0 +1,32 @@
+# Segredos e configuração local
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Java / Maven
+target/
+backend-java/target/
+*.class
+
+# IDE / sistema operacional
+.vscode/*.log
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Dados locais
+*.sqlite3
+
+# QR Codes gerados em tempo de execução (contêm dados de pareamento)
+qrcode.html
+qrcode_view.html

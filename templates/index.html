@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacolão da Economia — Assistente Cana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .chat-bg {
+            background-color: #061811;
+            background-image: radial-gradient(#0c291d 1px, transparent 0);
+            background-size: 16px 16px;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans antialiased p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto space-y-6">
+        
+        <!-- CABEÇALHO -->
+        <header class="flex justify-between items-center border-b border-emerald-900/50 pb-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 bg-emerald-950 border border-emerald-500/40 rounded-xl text-emerald-400 shadow-lg shadow-emerald-500/10 flex items-center justify-center w-12 h-12">
+                    <!-- Ícone Mascote Cana: Planta/Broto em Sacola Retornável -->
+                    <svg viewBox="0 0 24 24" class="w-8 h-8 fill-none stroke-emerald-400 stroke-[1.8] stroke-linecap-round stroke-linejoin-round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        <path d="M12 18v-4" class="stroke-emerald-300 stroke-2"></path>
+                        <path d="M12 14c2-2 4-1 4-1s0 3-2 3c-1 0-2-1-2-2z" class="fill-emerald-400/30 stroke-emerald-300"></path>
+                        <path d="M12 15c-2-2-4-1-4-1s0 3 2 3c1 0 2-1 2-2z" class="fill-emerald-400/30 stroke-emerald-300"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-slate-100 flex items-center gap-2">
+                        Sacolão da Economia
+                        <span class="text-emerald-400 text-xs font-mono bg-emerald-400/10 px-2 py-0.5 rounded border border-emerald-400/20">Eco-Friendly 🌿</span>
+                    </h1>
+                    <p class="text-xs text-emerald-300/70">Atendimento Sustentável & Extração Inteligente de Pedidos</p>
+                </div>
+            </div>
+            <span class="px-3 py-1 text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Cana Ativo
+            </span>
+        </header>
+
+        <!-- LAYOUT PRINCIPAL -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- SIMULADOR DE CHAT (WHATSAPP) -->
+            <div class="lg:col-span-7 flex flex-col bg-slate-900 border border-emerald-900/40 rounded-2xl overflow-hidden shadow-2xl h-[650px]">
+                
+                <div class="bg-slate-800/90 p-3 px-4 border-b border-emerald-900/40 flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-emerald-950 border border-emerald-500/40 flex items-center justify-center p-1.5 shadow">
+                            <svg viewBox="0 0 24 24" class="w-full h-full fill-none stroke-emerald-400 stroke-2">
+                                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" opacity="0.3"/>
+                                <path d="M12 6v12M12 12c2.5-2.5 5-2 5-2s.5 3.5-2 5.5c-1.5 1.5-3 1.5-3 1.5s-1.5 0-3-1.5C7.5 13.5 8 10 8 10s2.5-.5 4 2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-sm font-semibold text-slate-100 flex items-center gap-1.5">
+                                Cana — Sacolão da Economia
+                            </h2>
+                            <p class="text-[11px] text-emerald-400 flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span> online • Amigo da Natureza 🌱
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 bg-slate-900/80 p-1.5 px-3 rounded-lg border border-slate-700/60">
+                        <i class="fa-solid fa-user text-xs text-slate-400"></i>
+                        <input id="cliente-nome" type="text" value="Pedro Lucas" placeholder="Nome" class="bg-transparent text-xs w-24 text-slate-200 outline-none border-b border-transparent focus:border-emerald-400">
+                        <span class="text-slate-600">|</span>
+                        <i class="fa-solid fa-phone text-xs text-slate-400"></i>
+                        <input id="cliente-tel" type="text" value="5581999999999" placeholder="Telefone" class="bg-transparent text-xs w-28 text-slate-200 outline-none border-b border-transparent focus:border-emerald-400">
+                    </div>
+                </div>
+
+                <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 chat-bg">
+                    <div class="flex flex-col items-start max-w-[85%]">
+                        <div class="bg-slate-800 text-slate-200 p-3 rounded-2xl rounded-tl-none border border-slate-700/50 shadow text-sm space-y-1">
+                            <p>Olá! Sou o <strong>Cana</strong>, seu assistente verde do <strong>Sacolão da Economia</strong>! 🌿🛍️</p>
+                        </div>
+                        <span class="text-[10px] text-slate-500 mt-1 ml-1">Cana • Agora</span>
+                    </div>
+                </div>
+
+                <form id="chat-form" onsubmit="enviarMensagemChat(event)" class="bg-slate-800/90 p-3 border-t border-slate-700/50 flex gap-2 items-center">
+                    <textarea id="input-mensagem" rows="1" placeholder="Digite seus produtos ou mande sua lista..." 
+                              class="flex-1 bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-emerald-400 resize-none"
+                              onkeydown="if(event.key==='Enter' && !event.shiftKey){ event.preventDefault(); enviarMensagemChat(event); }"></textarea>
+                    
+                    <button type="submit" id="btn-send" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold p-3 rounded-xl transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center">
+                        <i class="fa-solid fa-paper-plane text-sm"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- PAINEL LATERAL: PAINEL DE EXTRAÇÃO / SACOLA -->
+            <div class="lg:col-span-5 bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-4 flex flex-col h-[650px]">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <h2 class="text-lg font-semibold text-slate-200 flex items-center gap-2">
+                        <i class="fa-solid fa-leaf text-emerald-400"></i> Sacola de Compras
+                    </h2>
+                    <span id="badge-pagamento" class="text-[11px] bg-slate-800 text-slate-400 px-2.5 py-1 rounded-full border border-slate-700">
+                        Pagamento: A definir
+                    </span>
+                </div>
+
+                <div id="itens-container" class="space-y-2 flex-1 overflow-y-auto pr-1">
+                    <div class="text-center py-16 text-slate-500 text-xs">
+                        <i class="fa-solid fa-basket-shopping text-3xl mb-2 block text-slate-700"></i>
+                        Aguardando o envio de itens do Sacolão...
+                    </div>
+                </div>
+
+                <div id="loading-ia" class="hidden text-center py-2 text-emerald-400 text-xs flex items-center justify-center gap-2 border-t border-slate-800">
+                    <i class="fa-solid fa-circle-notch animate-spin"></i> Cana está processando o pedido...
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+    let listaGlobalItens = [];
+
+    function formatarQtdFormatada(qtd) {
+        const num = parseFloat(qtd);
+        if (isNaN(num)) return qtd;
+        return Number.isInteger(num) ? num.toString() : num.toFixed(2);
+    }
+
+    async function enviarMensagemChat(event) {
+        event.preventDefault();
+
+        const input = document.getElementById('input-mensagem');
+        const btnSend = document.getElementById('btn-send');
+        const mensagem = input.value.trim();
+        const nomeCliente = document.getElementById('cliente-nome').value.trim() || 'Cliente';
+        const telefoneCliente = document.getElementById('cliente-tel').value.trim() || '5581999999999';
+
+        if (!mensagem) return;
+
+        adicionarBalaoChat('cliente', mensagem, nomeCliente);
+        input.value = '';
+
+        btnSend.disabled = true;
+        const idTyping = adicionarTypingIndicator();
+        document.getElementById('loading-ia').classList.remove('hidden');
+
+        const API_URL = window.location.port === '5500' ? 'http://127.0.0.1:8000/webhook/mercado' : '/webhook/mercado';
+
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    telefone: telefoneCliente, 
+                    mensagem: mensagem,
+                    itens_atuais: listaGlobalItens
+                })
+            });
+
+            const data = await response.json();
+            removerTypingIndicator(idTyping);
+
+            if (response.ok) {
+                const lista = typeof data.lista_separacao === 'string' 
+                    ? JSON.parse(data.lista_separacao) 
+                    : data.lista_separacao;
+
+                if (lista.itens) {
+                    listaGlobalItens = lista.itens;
+                }
+
+                adicionarBalaoChat('bot', lista.mensagem_resposta || gerarMensagemRespostaFallback(listaGlobalItens), 'Cana');
+                atualizarPainelExtracao(lista);
+            } else {
+                adicionarBalaoChat('bot', '⚠️ Ocorreu um problema ao processar seu pedido. Pode enviar novamente?', 'Cana');
+            }
+        } catch (err) {
+            console.error("Erro na conexão:", err);
+            removerTypingIndicator(idTyping);
+            adicionarBalaoChat('bot', '⚠️ Falha ao conectar com o servidor local (FastAPI).', 'Cana');
+        } finally {
+            btnSend.disabled = false;
+            document.getElementById('loading-ia').classList.add('hidden');
+        }
+    }
+
+    function removerItemManual(index) {
+        listaGlobalItens.splice(index, 1);
+        atualizarPainelExtracao({ itens: listaGlobalItens });
+        adicionarBalaoChat('bot', gerarMensagemRespostaFallback(listaGlobalItens), 'Cana');
+    }
+
+    function gerarMensagemRespostaFallback(itens) {
+        if (!itens || itens.length === 0) {
+            return "Sua sacola está vazia no momento. Quais itens do Sacolão da Economia gostaria de adicionar?";
+        }
+
+        let textoItens = itens.map((i, index) => {
+            let qtdDisplay = formatarQtdFormatada(i.quantidade);
+            let qtdStr = `${qtdDisplay} ${i.unidade_medida || 'un'}`;
+            if (i.unidade_medida === 'reais') qtdStr = `R$ ${parseFloat(i.quantidade).toFixed(2)}`;
+            
+            let marcaStr = i.marca_preferida ? ` (🏷️ ${i.marca_preferida})` : '';
+
+            return `${index + 1}. ${i.produto} (${qtdStr})${marcaStr}`;
+        }).join('\n');
+
+        return `Olá! Aqui está a sua sacola atualizada:\n\n${textoItens}\n\n🌱 Lembrete Eco: Enviamos seu pedido em sacolas retornáveis!\n1️⃣ Está tudo certinho ou deseja alterar algo?\n2️⃣ Qual será a forma de pagamento?`;
+    }
+
+    function adicionarBalaoChat(tipo, texto, autor) {
+        const container = document.getElementById('chat-messages');
+        const div = document.createElement('div');
+        const hora = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        if (tipo === 'cliente') {
+            div.className = 'flex flex-col items-end max-w-[85%] ml-auto';
+            div.innerHTML = `
+                <div class="bg-emerald-700 text-white p-3 rounded-2xl rounded-tr-none shadow text-sm whitespace-pre-line">
+                    ${escaparHTML(texto)}
+                </div>
+                <span class="text-[10px] text-slate-500 mt-1 mr-1">${escaparHTML(autor)} • ${hora}</span>
+            `;
+        } else {
+            div.className = 'flex flex-col items-start max-w-[85%]';
+            div.innerHTML = `
+                <div class="bg-slate-800 text-slate-200 p-3 rounded-2xl rounded-tl-none border border-slate-700/50 shadow text-sm whitespace-pre-line">
+                    ${escaparHTML(texto)}
+                </div>
+                <span class="text-[10px] text-slate-500 mt-1 ml-1">${escaparHTML(autor)} • ${hora}</span>
+            `;
+        }
+
+        container.appendChild(div);
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function adicionarTypingIndicator() {
+        const container = document.getElementById('chat-messages');
+        const id = 'typing-' + Date.now();
+        const div = document.createElement('div');
+        div.id = id;
+        div.className = 'flex flex-col items-start max-w-[85%]';
+        div.innerHTML = `
+            <div class="bg-slate-800 text-emerald-400 p-3 rounded-2xl rounded-tl-none border border-slate-700/50 text-xs flex items-center gap-1">
+                <i class="fa-solid fa-circle text-[8px] animate-bounce"></i>
+                <i class="fa-solid fa-circle text-[8px] animate-bounce delay-100"></i>
+                <i class="fa-solid fa-circle text-[8px] animate-bounce delay-200"></i>
+                <span class="ml-1">Cana está digitando...</span>
+            </div>
+        `;
+        container.appendChild(div);
+        container.scrollTop = container.scrollHeight;
+        return id;
+    }
+
+    function removerTypingIndicator(id) {
+        const el = document.getElementById(id);
+        if (el) el.remove();
+    }
+
+    function atualizarPainelExtracao(lista) {
+        const container = document.getElementById('itens-container');
+        const badgePagamento = document.getElementById('badge-pagamento');
+        
+        container.innerHTML = '';
+
+        if (lista.forma_pagamento) {
+            badgePagamento.innerText = `Pagamento: ${lista.forma_pagamento}`;
+            badgePagamento.className = 'text-[11px] bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-full border border-emerald-500/20';
+        }
+
+        if (!lista.itens || lista.itens.length === 0) {
+            container.innerHTML = `
+                <div class="text-center py-16 text-slate-500 text-xs">
+                    <i class="fa-solid fa-basket-shopping text-3xl mb-2 block text-slate-700"></i>
+                    Nenhum item na sacola.
+                </div>
+            `;
+            return;
+        }
+
+        lista.itens.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = 'flex items-center justify-between bg-slate-800/80 p-3 rounded-xl border border-slate-700/60 shadow-sm';
+            
+            let qtdDisplay = formatarQtdFormatada(item.quantidade);
+            let textoQtd = `${qtdDisplay} ${item.unidade_medida || 'un'}`;
+            if (item.unidade_medida === 'reais') {
+                textoQtd = `R$ ${parseFloat(item.quantidade).toFixed(2)}`;
+            }
+
+            let badgeMarca = '';
+            if (item.marca_preferida && item.marca_preferida.toLowerCase() !== item.produto.toLowerCase()) {
+                badgeMarca = `<span class="text-[10px] bg-emerald-500/10 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/20 font-medium">🏷️ ${escaparHTML(item.marca_preferida)}</span>`;
+            }
+
+            div.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-medium text-xs text-slate-100 block">${escaparHTML(item.produto)}</span>
+                            ${badgeMarca}
+                        </div>
+                        <div class="flex items-center gap-2 mt-0.5">
+                            <span class="text-[11px] font-mono text-emerald-400 font-semibold">${textoQtd}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-[10px] bg-slate-700/80 text-slate-300 px-2 py-0.5 rounded-md font-semibold border border-slate-600/50">
+                        ${escaparHTML(item.categoria || 'Hortifruti')}
+                    </span>
+                    <button onclick="removerItemManual(${index})" title="Remover item" class="text-slate-500 hover:text-red-400 p-1 transition-colors">
+                        <i class="fa-solid fa-trash-can text-xs"></i>
+                    </button>
+                </div>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    function escaparHTML(str) {
+        return str ? str.replace(/[&<>"']/g, function(m) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+        }) : '';
+    }
+</script>
+</body>
+</html>
